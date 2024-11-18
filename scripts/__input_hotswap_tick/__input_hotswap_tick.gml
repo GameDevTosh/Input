@@ -65,14 +65,15 @@ function __input_hotswap_tick_input()
                         return undefined;
                     }
                     
-                    if not (INPUT_HOTSWAP_ON_GAMEPAD_AXIS) continue;
-                    
-                    //Axis change
-                    if (__input_hotswap_axis_delta(_gamepad))
+                    if INPUT_HOTSWAP_ON_GAMEPAD_AXIS
                     {
-                        _player.__last_input_time = _global.__current_time;
-                        return undefined;                        
-                    }
+	                    //Axis change
+	                    if (__input_hotswap_axis_delta(_gamepad))
+	                    {
+	                        _player.__last_input_time = _global.__current_time;
+	                        return undefined;                        
+	                    }
+					}
                 }
             }
         }
@@ -106,15 +107,16 @@ function __input_hotswap_tick_input()
                             return INPUT_GAMEPAD[_gamepad_index];
                         }
                         
-                        if not (INPUT_HOTSWAP_ON_GAMEPAD_AXIS) continue;
-                        
-                        //Axis change
-                        if (__input_hotswap_axis_delta(_gamepad))
+                        if INPUT_HOTSWAP_ON_GAMEPAD_AXIS
                         {
-                            if (!__INPUT_SILENT) __input_trace("Hotswapping on gamepad ", INPUT_GAMEPAD[_gamepad_index], " \"", _global.__gamepads[_gamepad_index].__description, "\" axis press");
-                            _player.__last_input_time = _global.__current_time;
-                            return INPUT_GAMEPAD[_gamepad_index];                            
-                        }
+	                        //Axis change
+	                        if (__input_hotswap_axis_delta(_gamepad))
+	                        {
+	                            if (!__INPUT_SILENT) __input_trace("Hotswapping on gamepad ", INPUT_GAMEPAD[_gamepad_index], " \"", _global.__gamepads[_gamepad_index].__description, "\" axis press");
+	                            _player.__last_input_time = _global.__current_time;
+	                            return INPUT_GAMEPAD[_gamepad_index];                            
+	                        }
+						}
                     }
                 }
 
